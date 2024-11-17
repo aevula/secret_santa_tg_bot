@@ -1,0 +1,34 @@
+services:
+  app: &app
+    build:
+      context: .
+      target: development
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/opt/app
+    tmpfs:
+      - /opt/app/tmp/cache
+      - /opt/app/tmp/pids
+    tty: true
+    stdin_open: true
+    env_file:
+      - .env
+
+  test:
+    <<: *app
+    profiles:
+      - test
+    ports: []
+    env_file:
+      - .env.test
+
+
+networks:
+  default:
+    name: projects
+    external: true
+    ipam:
+      driver: default
+      config:
+        - subnet: "69.0.0.0/24"

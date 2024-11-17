@@ -1,0 +1,24 @@
+inherit_from: ./.rubocop-common.yml
+
+########## Bundler ##########
+
+Bundler/GemVersion:
+  Enabled: false
+
+########## Metrics ##########
+
+Metrics/MethodLength:
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
+  AllowedMethods: [table_data]
+  Exclude:
+    - '/**/db/migrate/*'
+
+########## Style ############
+
+Style/OpenStructUse:
+  Enabled: false
+
+########## Performance ######
+
+Performance/OpenStruct:
+  Enabled: false
