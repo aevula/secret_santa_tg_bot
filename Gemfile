@@ -8,9 +8,17 @@ ruby '3.3.4'
 gem 'bootsnap', require: false
 gem 'require_all', require: false
 
+gem 'rake', require: false
+
 gem 'ostruct'
 
 gem 'semantic_logger', require: false
+
+gem 'telegram-bot-ruby', require: false
+
+gem 'activerecord', require: false
+
+gem 'pg', require: false
 
 group :development, :test do
   gem 'byebug'

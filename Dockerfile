@@ -1,6 +1,6 @@
 FROM ruby:3.3.4-alpine3.20 AS development
 
-RUN apk add --no-cache build-base tzdata
+RUN apk add --no-cache build-base tzdata postgresql-dev
 
 WORKDIR /opt/app/
 
@@ -14,6 +14,8 @@ EXPOSE 3000
 
 
 FROM development AS production
+
+RUN apk add --no-cache tzdata postgresql-libs
 
 WORKDIR /opt/app
 

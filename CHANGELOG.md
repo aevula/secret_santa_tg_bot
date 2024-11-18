@@ -9,3 +9,10 @@
 - Fixed SemanticLogger configuration
 - Fixed Application boot
 - Removed Wirble
+
+## [0.1.2] - 2024-11-18
+
+- Working prototype
+  - PostgreSQL for storing users and their wishes
+  - Tg-Bot and Message-Handler for base commands
+  - ActiveRecord base rake tasks
