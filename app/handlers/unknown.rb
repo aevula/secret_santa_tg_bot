@@ -6,7 +6,8 @@ module Handlers
   class Unknown < Base
     def call
       return reroute(to: :start) unless user
-      return reroute(to: :wish) if user&.wishing?
+      return reroute(to: :wish) if user.wishing?
+      return reroute(to: :home) if user.wish
 
       reply(text: "Команда не распознана :(\nПопробуй еще раз", reply_markup:)
     end

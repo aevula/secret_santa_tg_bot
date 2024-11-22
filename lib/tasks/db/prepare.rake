@@ -10,6 +10,7 @@ namespace :db do
       table.string(:username, null: false)
       table.string(:first_name)
       table.string(:last_name)
+
       table.boolean(:wishing, null: false, default: false)
 
       table.text(:wish)

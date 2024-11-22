@@ -7,13 +7,14 @@ module Handlers
     def call
       return reroute(to: :start) unless user
 
-      reply(text: response, reply_markup:)
+      show_profile
     end
 
-    def response
-      response = ["#{user.first_name} #{user.last_name} (@#{user.username})", "Желание: #{user.wish}"]
+    def show_profile
+      wish_text = user.wish.force_encoding('utf-8')
+      response = ["#{user.first_name} #{user.last_name} (@#{user.username})", "Желание: #{wish_text}"]
       reponse.push("Твой пиздюк: #{user.receiver}") if User.distributed?
-      response.join("\n")
+      reply(text: response.join("\n"), reply_markup:)
     end
 
     def reply_markup

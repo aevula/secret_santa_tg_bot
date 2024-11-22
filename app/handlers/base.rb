@@ -7,6 +7,7 @@ module Handlers
     attr_reader :bot, :message, :user
 
     def self.call(bot:, message:, user:)
+      SemanticLogger['Bot'].tagged(Thread.current['uuid']) { _1.info("Handling with #{name}") }
       handler = new(bot:, message:, user:)
       handler.call
     rescue StandardError, ActiveRecord::ActiveRecordError => e
@@ -19,8 +20,6 @@ module Handlers
       @message = message
       @user = user
     end
-
-    # private
 
     def reroute(to:)
       Handler.handler_for(to:, message:).call(bot:, message:, user:)

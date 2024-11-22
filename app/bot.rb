@@ -11,6 +11,9 @@ class Bot
       handler = Handler.new(bot)
 
       bot.listen do |message|
+        Thread.current['uuid'] = SecureRandom.uuid
+        SemanticLogger['Bot'].tagged(Thread.current['uuid']) { _1.info('Received message') }
+
         handler.call(message:) if message.is_a?(Telegram::Bot::Types::Message)
       end
     end

@@ -16,3 +16,6 @@
   - PostgreSQL for storing users and their wishes
   - Tg-Bot and Message-Handler for base commands
   - ActiveRecord base rake tasks
+
+## [0.1.3] - 2024-11-22
+- Microchanges

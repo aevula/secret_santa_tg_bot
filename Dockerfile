@@ -10,7 +10,7 @@ RUN bundle install -j 4
 
 EXPOSE 3000
 
-# CMD ["bundle", "exec", "puma"]
+CMD ["bundle", "exec", "rake", "run"]
 
 
 FROM development AS production
@@ -29,4 +29,4 @@ ENV RAILS_ENV=production
 
 EXPOSE 3000
 
-# CMD ["bundle", "exec", "puma"]
+CMD ["bundle", "exec", "rake", "run"]

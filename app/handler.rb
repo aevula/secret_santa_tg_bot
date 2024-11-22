@@ -10,11 +10,11 @@ require_all './app/handlers'
 class Handler
   HANDLERS = {
     help:    Handlers::Help,
-    start:    Handlers::Start,
-    home:     Handlers::Home,
-    join:     Handlers::Join,
-    wish:     Handlers::Wish,
-    unknown:  Handlers::Unknown
+    start:   Handlers::Start,
+    home:    Handlers::Home,
+    join:    Handlers::Join,
+    wish:    Handlers::Wish,
+    unknown: Handlers::Unknown
   }.freeze
   private_constant :HANDLERS
 
@@ -34,9 +34,9 @@ class Handler
     handler = handler_for(message:)
 
     handler.call(bot:, message:, user:)
-  rescue StandardError, ActiveRecord::ActiveRecordError => e
-    SemanticLogger['Bot'].error(e)
-    bot.api.reply(chat_id: message.chat_id, text: 'Ошибочка, отправь идиоту код')
+  rescue StandardError => e
+    SemanticLogger['Bot'].tagged(Thread.current['uuid']) { _1.error(e) }
+    bot.api.reply(chat_id: message.chat_id, text: "Ошибочка, отправь идиоту код\n#{Thread.current['uuid']}")
   end
 
   private
